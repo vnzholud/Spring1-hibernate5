@@ -21,12 +21,11 @@ public class MainApp {
             init();
 //            readAndPrintExample();
             ProductDao productDao = new ProductDao(factory);
-//            Product p = productDao.findById(2L);
-//            System.out.println(p);
+            Product p = productDao.findById(2L);
+            System.out.println(p);
             List<Product> products = productDao.findAll();
             System.out.println(products);
-
-
+//            Product newProduct = productDao.saveOrUpdate(5L,"TTT", 67);
 
         } catch (Exception e) {
             e.printStackTrace();

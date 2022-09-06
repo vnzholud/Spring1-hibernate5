@@ -20,6 +20,15 @@ public class Product {
         return id;
     }
 
+
+    public int getPrice() {
+        return price;
+    }
+
+    public void setPrice(int price) {
+        this.price = price;
+    }
+
     public void setId(Long id) {
         this.id = id;
     }
@@ -32,14 +41,6 @@ public class Product {
         this.title = title;
     }
 
-    public int getPrice() {
-        return price;
-    }
-
-    public void setPrice(int price) {
-        this.price = price;
-    }
-
     public Product() {
     }
 
@@ -49,14 +50,12 @@ public class Product {
         this.price = price;
     }
 
-    public Product(String title, int price) {
-        this.title = title;
-        this.price = price;
-    }
-
     @Override
     public String toString() {
-        return String.format("Product [id = %d, title = %s, price = %d]", id, title, price);
+        return "Product{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", price=" + price +
+                '}';
     }
 }
-
