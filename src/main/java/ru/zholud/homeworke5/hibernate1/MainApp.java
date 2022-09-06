@@ -4,6 +4,8 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
+import java.util.List;
+
 public class MainApp {
     private static SessionFactory factory;
 
@@ -17,7 +19,14 @@ public class MainApp {
     public static void main(String[] args) {
         try {
             init();
-            readAndPrintExample();
+//            readAndPrintExample();
+            ProductDao productDao = new ProductDao(factory);
+//            Product p = productDao.findById(2L);
+//            System.out.println(p);
+            List<Product> products = productDao.findAll();
+            System.out.println(products);
+
+
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -28,14 +37,14 @@ public class MainApp {
 
     public static void readAndPrintExample() {
         try (Session session = factory.openSession()) {
-            SimpleItem simpleItem = session.get(SimpleItem.class, 3L);
+            Product product = session.get(Product.class, 3L);
             System.out.println(session.getTransaction().isActive());
         }
 
         try (Session session = factory.getCurrentSession()) {
             session.beginTransaction();
-            SimpleItem simpleItem = session.get(SimpleItem.class, 3L);
-            System.out.println(simpleItem);
+            Product product = session.get(Product.class, 3L);
+            System.out.println(product);
             session.getTransaction().commit();
         }
     }
