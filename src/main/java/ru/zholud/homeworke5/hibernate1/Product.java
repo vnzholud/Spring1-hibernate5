@@ -3,8 +3,8 @@ package ru.zholud.homeworke5.hibernate1;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "simple_items")
-public class SimpleItem {
+@Table(name = "product")
+public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
@@ -20,6 +20,15 @@ public class SimpleItem {
         return id;
     }
 
+
+    public int getPrice() {
+        return price;
+    }
+
+    public void setPrice(int price) {
+        this.price = price;
+    }
+
     public void setId(Long id) {
         this.id = id;
     }
@@ -32,31 +41,21 @@ public class SimpleItem {
         this.title = title;
     }
 
-    public int getPrice() {
-        return price;
+    public Product() {
     }
 
-    public void setPrice(int price) {
-        this.price = price;
-    }
-
-    public SimpleItem() {
-    }
-
-    public SimpleItem(Long id, String title, int price) {
+    public Product(Long id, String title, int price) {
         this.id = id;
-        this.title = title;
-        this.price = price;
-    }
-
-    public SimpleItem(String title, int price) {
         this.title = title;
         this.price = price;
     }
 
     @Override
     public String toString() {
-        return String.format("SimpleItem [id = %d, title = %s, price = %d]", id, title, price);
+        return "Product{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", price=" + price +
+                '}';
     }
 }
-
