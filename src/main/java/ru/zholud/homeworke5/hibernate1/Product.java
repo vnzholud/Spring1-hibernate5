@@ -1,6 +1,7 @@
 package ru.zholud.homeworke5.hibernate1;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "product")
@@ -15,6 +16,9 @@ public class Product {
 
     @Column(name = "price")
     private int price;
+
+    @ManyToMany
+    private List<User> users;
 
     public Long getId() {
         return id;
