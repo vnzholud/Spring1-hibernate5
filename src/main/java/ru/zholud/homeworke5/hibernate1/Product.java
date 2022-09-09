@@ -18,20 +18,26 @@ public class Product {
     private int price;
 
     @ManyToMany
+    @JoinTable(
+            name = "users_product",
+            joinColumns = @JoinColumn(name = "product_id"),
+            inverseJoinColumns = @JoinColumn(name = "user_id")
+    )
     private List<User> users;
 
-    public Long getId() {
-        return id;
+
+
+    public List<User> getUsers() {
+        return users;
+    }
+
+    public void setUsers(List<User> users) {
+        this.users = users;
     }
 
 
-    public int getPrice() {
-        return price;
-    }
 
-    public void setPrice(int price) {
-        this.price = price;
-    }
+    public Long getId() { return id; }
 
     public void setId(Long id) {
         this.id = id;
@@ -45,14 +51,14 @@ public class Product {
         this.title = title;
     }
 
+    public int getPrice() { return price; }
+
+    public void setPrice(int price) { this.price = price; }
+
     public Product() {
     }
 
-    public Product(Long id, String title, int price) {
-        this.id = id;
-        this.title = title;
-        this.price = price;
-    }
+
 
     @Override
     public String toString() {
