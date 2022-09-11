@@ -4,6 +4,8 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
+import java.util.List;
+
 public class MainApp {
     private static SessionFactory factory;
 
@@ -17,7 +19,20 @@ public class MainApp {
     public static void main(String[] args) {
         try {
             init();
-            readAndPrintExample();
+            Session session = null;
+            System.out.println("***********************************");
+//          проверка
+            session = factory.getCurrentSession();
+
+            session.beginTransaction();
+
+            User user = session.get(User.class, 1L);
+            System.out.println(user);
+            System.out.println(user.getProduct());
+            System.out.println("***********************************");
+
+
+
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -26,19 +41,7 @@ public class MainApp {
         }
     }
 
-    public static void readAndPrintExample() {
-        try (Session session = factory.openSession()) {
-            SimpleItem simpleItem = session.get(SimpleItem.class, 3L);
-            System.out.println(session.getTransaction().isActive());
-        }
 
-        try (Session session = factory.getCurrentSession()) {
-            session.beginTransaction();
-            SimpleItem simpleItem = session.get(SimpleItem.class, 3L);
-            System.out.println(simpleItem);
-            session.getTransaction().commit();
-        }
-    }
 
     public static void shutdown() {
         factory.close();
